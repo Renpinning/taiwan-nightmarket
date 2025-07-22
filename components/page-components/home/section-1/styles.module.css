@@ -15,7 +15,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #f9d77e; 
 }
 
 .textSectionContent {
@@ -38,14 +37,14 @@
 .textSectionParagraph {
   font-size: 18px;
   line-height: 2.4; 
-  color: #333;
+  color: #ffffff;
   text-align: justify;
   letter-spacing: 1px; 
 }
 
 .highlight {
   font-weight: bold;
-  color: #284e89; 
+  color: #ffe372; 
 }
 
 /* 響應式設計 */
