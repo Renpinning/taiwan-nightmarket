@@ -1,0 +1,353 @@
+.section5Wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 900px; 
+  background-color: transparent;
+  overflow: visible; 
+  padding: 80px 0 3rem; 
+}
+
+/* 底層背景圖層 */
+.bottomBackgroundLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; 
+  opacity: 1;
+}
+
+.bottomBackgroundLayer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* 第二層背景圖層 */
+.backgroundLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* 高於底層背景 */
+  opacity: 0.9;
+}
+
+.backgroundLayer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  will-change: transform; /* 優化圖層 */
+}
+
+/* 手機版背景和桌面版背景共用樣式 */
+.mobileBackground,
+.desktopBackground {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.section5Container {
+  position: relative;
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  z-index: 3; 
+  padding: 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.section5Container.visible {
+  opacity: 1;
+}
+
+/* 標題區 */
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 48px;
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.titleText {
+  position: relative;
+  z-index: 2;
+  padding: 0 1rem;
+}
+
+.decorImage {
+  width: 100px;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+/* 獎品展示區 - 第一排 */
+.prizesRowTop {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  flex-wrap: nowrap; 
+}
+
+/* 獎品展示區 - 第二排 */
+.prizesRowBottom {
+  display: flex;
+  justify-content: center;
+  width: 75%;
+  gap: 2rem;
+  flex-wrap: nowrap; 
+}
+
+/* 獎品項目 */
+.prizeItem {
+  flex: 0 0 calc(30% - 0.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  background-color: transparent;
+  max-width: 320px;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+}
+
+.prizeItem.visible {
+  opacity: 1;
+}
+
+.prizeItem:hover {
+  transform: translateY(-2px);
+}
+
+.prizesRowBottom .prizeItem {
+  flex: 0 0 calc(35% - 1rem);
+  max-width: 320px; 
+}
+
+.prizeImageContainer {
+  width: 100%;
+  max-width: 100%; 
+  height: 0;
+  padding-bottom: 85%; 
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.prizeImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0;
+}
+
+/* 獎品資訊 */
+.prizeInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.prizeRank {
+  font-size: 24px;
+  font-weight: bold;
+  color: #254b83;
+  margin-bottom: 0.3rem;
+}
+
+.prizeName {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 0.1rem;
+}
+
+.prizeSource {
+  font-size: 0.8rem;
+  color: #5e5656;
+  text-align: center;
+  width: 100%;
+  margin-top: 2rem; 
+}
+
+.invisible {
+  opacity: 0;
+}
+
+
+/* 響應式設計 - 大型平板電腦 */
+@media (max-width: 75rem) { /* 1200px */
+  .section5Wrapper {
+    min-height: 800px;
+    padding: 60px 0 2.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .decorImage {
+    width: 50px;
+  }
+}
+
+/* 響應式設計 - 中型設備 */
+@media (max-width: 62rem) { /* 992px */
+  .section5Wrapper {
+    min-height: auto; 
+    padding: 2.5rem 0 3rem;
+  }
+  
+  .prizesRowTop {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .prizesRowBottom {
+    flex-wrap: wrap;
+    width: 90%;
+    gap: 1.5rem;
+  }
+  
+  .prizeItem, .prizesRowBottom .prizeItem {
+    flex: 0 0 calc(45% - 1rem);
+    max-width: 280px;
+  }
+  
+  .sectionTitle {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .decorImage {
+    width: 45px;
+  }
+}
+
+/* 響應式設計 - 平板電腦和手機 */
+@media (max-width: 48rem) { /* 768px - 手機尺寸臨界點 */
+  .section5Wrapper {
+    padding: 2rem 0 2.5rem;
+  }
+  
+  .prizeItem, .prizesRowBottom .prizeItem {
+    flex: 0 0 calc(45% - 0.5rem);
+    max-width: 220px;
+  }
+  
+  .prizeRank {
+    font-size: 24px;
+  }
+  
+  .prizeName {
+    font-size: 16px;
+  }
+  
+  .sectionTitle {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  
+  .decorImage {
+    width: 60px;
+  }
+  
+  .mobileBackground {
+    object-position: center center; 
+  }
+  
+  .backgroundLayer {
+    opacity: 0.85; 
+  }
+}
+
+/* 響應式設計 - 大型手機 */
+@media (max-width: 36rem) { 
+  .section5Wrapper {
+    padding: 1.8rem 0 2.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 30px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .prizeRank {
+    font-size: 20px;
+  }
+}
+
+/* 響應式設計 - 小型手機 */
+@media (max-width: 30rem) { /* 480px */
+  .section5Wrapper {
+    padding: 1.5rem 0 2rem;
+  }
+  
+  .prizesRowTop, .prizesRowBottom {
+    width: 100%;
+    gap: 1rem;
+  }
+  
+  .prizeItem, .prizesRowBottom .prizeItem {
+    flex: 0 0 calc(90% - 0.5rem);
+    max-width: 200px;
+    margin-bottom: 0.8rem;
+  }
+  
+  .sectionTitle {
+    margin-bottom: 1.2rem;
+  }
+  
+  .prizeRank {
+    font-size: 20px;
+  }
+  
+  .prizeName {
+    font-size: 1rem;
+  }
+  
+  .prizeSource {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* 超小型設備 */
+@media (max-width: 23.75rem) { /* 380px */
+  .section5Wrapper {
+    padding: 1.2rem 0 1.8rem;
+  }
+  .prizeItem, .prizesRowBottom .prizeItem {
+    max-width: 170px;
+  }
+}

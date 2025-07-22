@@ -1,0 +1,206 @@
+.Wrapper {
+  position: relative;
+  width: 100%;
+  padding: 40px 0;
+}
+
+/* 背景圖層 */
+.backgroundLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 1;
+}
+
+.backgroundLayer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2; 
+}
+
+/* 標題區 - 確保標題在 Container 內並正確顯示 */
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 48px;
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+  z-index: 3; /* 確保標題在背景之上 */
+}
+
+.titleText {
+  position: relative;
+  z-index: 2;
+  padding: 0 1rem;
+}
+
+/* 裝飾圖片 */
+.decorImage {
+  width: 32px; 
+  height: auto;
+  transition: all 0.3s ease;
+  display: block;
+  max-width: none;
+  z-index: 3;
+  position: relative;
+}
+
+/* 卡片容器 */
+.CardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+/* 食物卡片 */
+.foodCard {
+  flex: 0 0 calc(20% - 13px); 
+  margin-bottom: 28px;
+  position: relative;
+  transition: transform 0.3s ease;
+  padding-top: 24px; 
+  padding-right: 24px; 
+  opacity: 0; 
+}
+
+.foodCard:hover {
+  transform: translateY(-5px);
+}
+
+/* 卡片圖片容器 */
+.cardImageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 68%; 
+}
+
+.cardImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+/* 右上角圖片標籤 */
+.cornerImageWrapper {
+  position: absolute;
+  top: 8px;
+  right: 4px; 
+  width: 64px; 
+  height: auto;
+  z-index: 3;
+  pointer-events: none; 
+}
+
+.cornerImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 卡片內容區 */
+.cardContent {
+  padding: 10px 0;
+  width: 100%; 
+}
+
+.cardDescription {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* 平板響應式設計 */
+@media (max-width: 1024px) {
+  .foodCard {
+    flex: 0 0 calc(33.33% - 11px); 
+    padding-top: 20px;
+    padding-right: 25px;
+  }
+  
+  .cornerImageWrapper {
+    width: 60px; 
+  }
+}
+
+/* 手機響應式設計 */
+@media (max-width: 768px) {
+  .Container {
+    padding: 30px 20px;
+  }
+  .sectionTitle{
+    font-size: 30px;
+  }
+  
+  .foodCard {
+    flex: 0 0 calc(50% - 10px); 
+    padding-top: 25px;
+    padding-right: 20px;
+  }
+  
+  .cornerImageWrapper {
+    width: 55px;
+  }
+  
+  .decorImage {
+    width: 24px; /* 手機上調整裝飾圖片大小 */
+  }
+}
+
+@media (max-width: 480px) {
+  .Container {
+    padding: 0px 12px;
+  }
+  
+  .foodCard {
+    flex: 0 0 calc(50% - 8px); 
+    padding-top: 20px;
+    padding-right: 8px;
+    margin-bottom: 4px; 
+  }
+  
+  .cornerImageWrapper {
+    width: 48px; 
+    right: -2px;
+  }
+  
+  .cardDescription {
+    font-size: 12px;
+  }
+  
+  .cardImage {
+    border-radius: 12px; 
+  }
+  
+  .decorImage {
+    width: 20px; 
+  }
+}

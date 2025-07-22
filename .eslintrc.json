@@ -1,0 +1,59 @@
+{
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "alias": {
+        "map": [
+          ["@", "."],
+          ["@components", "./components"],
+          ["@styles", "./styles"],
+          ["@pages", "./pages"],
+          ["@public", "./public"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".css", ".module.css", ".scss", ".json"]
+      }
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "next",
+    "next/core-web-vitals",
+    "prettier"
+  ],
+  "plugins": ["jsx-a11y", "react", "react-hooks", "import", "prettier"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/prop-types": "off",
+    "prettier/prettier": "warn",
+    "no-unused-vars": "warn",
+    "@next/next/no-img-element": "off",
+    "import/no-unresolved": "off",  
+    "import/named": "warn",         
+    "import/default": "warn",
+    "import/namespace": "warn",
+    "import/export": "warn"        
+  }
+}

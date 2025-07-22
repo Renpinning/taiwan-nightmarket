@@ -1,0 +1,77 @@
+.footer {
+  background-color: #f9d77e;
+  padding: 2rem 0;
+  color: #333;
+  width: 100%;
+}
+
+.container {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoContainer {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.logoContainer a {
+  display: inline-block;
+  transition: opacity 0.3s ease;
+}
+
+.logoContainer a:hover {
+  opacity: 0.8;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+  cursor: pointer;
+}
+
+.infoContainer {
+  text-align: center;
+  width: 100%;
+}
+
+.address, .browserSupport {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* 響應式設計 */
+@media (max-width: 48rem) { /* 768px */
+  .footer {
+    padding: 1.5rem 0;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  .address, .browserSupport {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 30rem) { /* 480px */
+  .footer {
+    padding: 1.2rem 0;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .address, .browserSupport {
+    font-size: 0.75rem;
+    padding: 0 0.5rem;
+  }
+}

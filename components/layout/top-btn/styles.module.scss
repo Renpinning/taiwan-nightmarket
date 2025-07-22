@@ -1,0 +1,71 @@
+@import '@/styles/variables.scss';
+
+.top-btn {
+  position: fixed;
+  z-index: 1000;
+  bottom: -3%;
+  right: 3%;
+  width: 48px;
+  height: 48px;
+  border: unset;
+  background: none;
+  transition: all 500ms;
+  opacity: 0;
+  padding: 0;
+
+  &.visible {
+    opacity: 1;
+    bottom: 3%;
+    right: 3%;
+  }
+
+  .icon-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .default {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: all 500ms;
+    color: white;
+    display: none;
+    @media screen and (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  .hover {
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    cursor: pointer;
+    transition: all 500ms;
+    color: white;
+    
+    @media screen and (max-width: 768px) {
+      animation: forwards;
+    }
+    
+    @media screen and (min-width: 768px) {
+      opacity: 0;
+    }
+  }
+}
+
+// 桌面版hover效果
+@media screen and (min-width: 768px) {
+  .top-btn:hover {
+    .default {
+      opacity: 0;
+    }
+    
+    .hover {
+      filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 1));
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+    "deploy": {
+        "targets": [
+            {
+                "type": "local",
+                "name": "Remote IIS",
+                "description": "Remote IIS Server",
+                "dir": "Z:\\taiwan-nightmarket",
+            }
+        ],
+        "packages": [
+            {
+                "name": "taiwan-nightmarket",
+                "description": "Deploy to IIS",
+                "files": [
+                    ".next/**/*",
+                    "public/**/*",
+                    "pages/**/*",          
+                    "components/**/*",   
+                    "styles/**/*",        
+                    "assets/**/*",         
+                    "hooks/**/*",     
+                    "node_modules/**/*",      
+                    "services/**/*",        
+                    "context/**/*",         
+                    "configs/**/*",         
+                    "constants/**/*",       
+                    "package.json",
+                    "package-lock.json",    
+                    "next.config.js",
+                    "server.js",
+                    "web.config",
+                    ".env.production"      
+                ],
+                "exclude": [
+                    ".git/**/*",
+                    "**/*.map",             // 排除 source map 檔案
+                    "**/*.ts",              // 排除 TypeScript 源檔案
+                    "**/*.tsx",             // 排除 TypeScript React 源檔案
+                    ".vscode/**/*",         // 排除 VS Code 設定
+                    "README.md",
+                    ".gitignore",
+                    ".eslintrc*",
+                    ".prettierrc*",
+                ]
+            }
+        ]
+    }
+}

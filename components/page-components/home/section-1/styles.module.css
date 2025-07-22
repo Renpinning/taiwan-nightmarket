@@ -1,0 +1,98 @@
+.textSection {
+  position: relative;
+  width: 100%;
+  height: 500px; 
+  overflow: hidden;
+}
+
+.textSectionBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f9d77e; 
+}
+
+.textSectionContent {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0; 
+}
+
+.textSectionContent.animate__fadeIn {
+  opacity: 1;
+}
+
+.textSectionParagraph {
+  font-size: 18px;
+  line-height: 2.4; 
+  color: #333;
+  text-align: justify;
+  letter-spacing: 1px; 
+}
+
+.highlight {
+  font-weight: bold;
+  color: #284e89; 
+}
+
+/* 響應式設計 */
+@media (max-width: 1024px) {
+  .textSection {
+    height: auto; 
+  }
+  
+  .textSectionContent {
+    max-width: 90%;
+    padding: 40px 90px; 
+  }
+  
+  .textSectionParagraph {
+    font-size: 16px;
+    line-height: 2; /* 平板尺寸行距 */
+  }
+}
+
+@media (max-width: 768px) {
+  .textSectionContent {
+    padding: 40px 100px; 
+    margin: 0 auto; 
+    width: 85%; 
+  }
+  
+  .textSectionParagraph {
+    line-height: 1.9; /* 小平板尺寸行距 */
+  }
+}
+
+@media (max-width: 576px) {
+  .textSection {
+    height: auto;
+    min-height: 500px; 
+    display: flex;
+    align-items: center; 
+  }
+  
+  .textSectionContent {
+    padding: 30px 20px;
+    height: auto; 
+    justify-content: center; 
+  }
+  
+  .textSectionParagraph {
+    font-size: 15px;
+    line-height: 1.8; /* 手機尺寸行距 */
+  }
+}

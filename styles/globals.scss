@@ -1,0 +1,151 @@
+// 導入 SCSS 變量和 mixins
+@import './variables.scss';
+
+// 導入 Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// 導入字體
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+// CSS 變量
+:root {
+  --container-max-width: 1400px;
+  --content-padding: 2.5rem;
+  --content-radius: 1.25rem;
+  --popup-padding: 1.5rem;
+  --popup-radius: 1rem;
+  --letter-spacing-4: 0.25rem;
+  --letter-spacing-2: 0.125rem;
+  --img-radius: 1rem;
+  --input-radius: 0.5rem;
+  --pri-1: #{$pri-1};  // 使用 SCSS 變量
+  --pri-2: #c7beb9;
+  --sec-1: #{$sec-1};
+  --sec-2: #{$pri-3};
+  --success: #{$success};
+  --text-dark: #{$text-dark};
+  --text-grey: #{$text-grey};
+  --text-white-1: #EBEBE6;
+  --text-white-2: #{$text-white};
+  --input-grey: #bbbbbb;
+  --danger: #{$danger};
+  --bg-grey-light: #f7f7f7;
+  --card-shadow: 0 0 16px 0 rgb(34, 34, 34, 0.2);
+  --font-family: #{$font-family};
+}
+
+/* 覆蓋 Bootstrap 的容器樣式 */
+.container {
+  max-width: var(--container-max-width) !important;
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (min-width: 576px) {
+    max-width: 540px !important;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px !important;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 960px !important;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1140px !important;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: var(--container-max-width) !important;
+  }
+}
+
+/* 基礎樣式 */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  color: var(--text-dark);
+  font-family: var(--font-family);
+  line-height: 1.6;
+}
+
+/* 標題樣式 */
+h1 {
+  @include font-h1;
+  margin: 0;
+}
+
+h2 {
+  @include font-h2;
+  margin: 0;
+}
+
+h3 {
+  @include font-h3;
+  margin: 0;
+}
+
+h4 {
+  @include font-h4;
+  margin: 0;
+}
+
+h5 {
+  @include font-h5;
+  margin: 0;
+}
+
+h6 { 
+  font-size: 1.25rem; 
+  letter-spacing: var(--letter-spacing-2);
+  margin: 0;
+  font-family: var(--font-family);
+}
+
+p {
+  @include font-p;
+  margin: 0;
+}
+
+ul, li {
+  @include font-p;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+a {
+  @include font-p;
+  color: var(--text-dark);
+  text-decoration: none;
+  margin: 0;
+}
+
+@media screen and (max-width: 400px) {
+  h2 { 
+    font-size: 2.25rem; 
+  }
+  h3 { 
+    font-size: 2.125rem; 
+  }
+  p { 
+    @include font-small;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+}

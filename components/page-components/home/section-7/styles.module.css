@@ -1,0 +1,333 @@
+.section7Wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 700px; 
+    background-color: transparent;
+    overflow: visible; 
+    padding: 0 0 3rem; 
+  }
+  
+  /* 底層背景圖層 */
+  .bottomBackgroundLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+    opacity: 1;
+  }
+  
+  .bottomBackgroundLayer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  
+  .section7Container {
+    position: relative;
+    width: 100%;
+    max-width: 90rem;
+    margin: 0 auto;
+    z-index: 3;
+    padding: 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: visible;
+  }
+  
+  /* 標題區 */
+  .sectionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-top: 28px;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+  }
+  
+  .titleText {
+    position: relative;
+    z-index: 2;
+    padding: 0 1rem;
+  }
+  
+  /* 裝飾圖片 */
+  .decorImage {
+    width: 100px;
+    height: auto;
+    transition: all 0.3s ease;
+  }
+  
+  /* 獎項容器 */
+  .awardsContainer {
+    width: 100%;
+    max-width: 70rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  /* 獎項卡片 */
+  .awardCard {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .awardCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* 獎項標題 */
+  .awardTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #254b83;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* 標題圖標 */
+  .awardIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 24px;
+  }
+  
+  /* 獎項內容 */
+  .awardContent {
+    padding-left: 2.5rem;
+  }
+  
+  .prizeInfo {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+  
+  .winnersList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.8rem;
+  }
+  
+  .winnerName {
+    font-size: 1.1rem;
+    color: #333;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .winnerSeparator {
+    color: #ccc;
+    margin: 0 0.3rem;
+  }
+  
+  /* 恭喜訊息 */
+  .congratsMessage {
+    width: 100%;
+    max-width: 70rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    color: #254b83;
+    font-weight: 500;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .invisible {
+    opacity: 0;
+  }
+  
+  /* 響應式設計 - 大型平板電腦 */
+  @media (max-width: 75rem) { 
+    .section7Wrapper {
+      min-height: auto;
+      padding: 0 0 2.5rem; 
+    }
+    
+    .sectionTitle {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .decorImage {
+      width: 50px;
+    }
+    
+    .awardIcon {
+      font-size: 22px;
+    }
+  }
+  
+  /* 響應式設計 - 中型設備 */
+  @media (max-width: 62rem) { 
+    .section7Wrapper {
+      padding: 0 0 3rem; 
+    }
+    
+    .awardTitle {
+      font-size: 1.3rem;
+    }
+    
+    .prizeInfo, .winnerName, .congratsMessage {
+      font-size: 1rem;
+    }
+    
+    .sectionTitle {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .decorImage {
+      width: 45px;
+    }
+    
+    .awardIcon {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+  }
+  
+  /* 響應式設計 - 平板電腦和手機 */
+  @media (max-width: 48rem) { 
+    .section7Wrapper {
+      padding: 0 0 2.5rem;
+    }
+    
+    .awardCard {
+      padding: 1.25rem 1.5rem;
+    }
+    
+    .awardTitle {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .prizeInfo, .winnerName, .congratsMessage {
+      font-size: 0.95rem;
+    }
+    
+    .sectionTitle {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    
+    .decorImage {
+      width: 60px;
+    }
+    
+    .awardIcon {
+      font-size: 18px;
+      margin-right: 8px;
+    }
+    
+    .awardContent {
+      padding-left: 2rem;
+    }
+  }
+  
+  /* 響應式設計 - 大型手機 */
+  @media (max-width: 36rem) { 
+    .section7Wrapper {
+      padding: 0 0 2.5rem; 
+    }
+    
+    .awardCard {
+      padding: 1rem 1.25rem;
+    }
+    
+    .awardTitle {
+      font-size: 1.1rem;
+    }
+    
+    .prizeInfo, .winnerName {
+      font-size: 0.9rem;
+    }
+    
+    .congratsMessage {
+      font-size: 0.9rem;
+      padding: 1rem;
+    }
+    
+    .sectionTitle {
+      font-size: 30px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .awardIcon {
+      font-size: 16px;
+      margin-right: 6px;
+    }
+    
+    .awardContent {
+      padding-left: 1.5rem;
+    }
+  }
+  
+  /* 響應式設計 - 小型手機 */
+  @media (max-width: 30rem) { 
+    .section7Wrapper {
+      padding: 0 0 2rem; 
+    }
+    
+    .awardCard {
+      padding: 0.8rem 1rem;
+    }
+    
+    .awardTitle {
+      font-size: 1rem;
+    }
+    
+    .prizeInfo, .winnerName {
+      font-size: 0.85rem;
+    }
+    
+    .congratsMessage {
+      font-size: 0.85rem;
+      padding: 0.8rem;
+    }
+    
+    .sectionTitle {
+      margin-bottom: 1.2rem;
+    }
+    
+    .awardIcon {
+      font-size: 14px;
+      margin-right: 5px;
+    }
+    
+    .awardContent {
+      padding-left: 1rem;
+    }
+  }
+  
+  /* 超小型設備 */
+  @media (max-width: 23.75rem) { 
+    .section7Wrapper {
+      padding: 1.2rem 0 1.8rem;
+    }
+  }
