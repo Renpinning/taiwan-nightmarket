@@ -120,16 +120,16 @@ const AnimatedBanner = () => {
           />
         </div>
 
-        {/* 手機第二張背景圖 - 淡入效果 */}
+        {/* 手機裝飾圖片 - 霓虹燈動畫 */}
         <div
           className={styles.mobileBannerBg2}
           style={{ opacity: mounted ? 1 : 0 }}
         >
           <img
-            src={getImagePath('/image/banner/mb-2.png')}
-            alt="手機背景圖片2"
+            src={getImagePath('/image/banner/mb-dec.png')}
+            alt="手機裝飾圖片"
             loading="lazy"
-            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+            className={styles.decorationImage}
           />
         </div>
 
@@ -141,7 +141,7 @@ const AnimatedBanner = () => {
             }`}
           >
             <img
-              src={getImagePath('/image/banner/logo.png')}
+              src={getImagePath('/image/banner/m-logo.png')}
               alt="台灣經典小吃票選活動"
               className={styles.floatingLogo}
               loading="eager"
@@ -177,15 +177,16 @@ const AnimatedBanner = () => {
           />
         </div>
 
-        {/* 平板第二張背景圖 - 淡入效果 */}
+        {/* 平板裝飾圖片 - 霓虹燈動畫 */}
         <div
           className={styles.tabletBannerBg2}
           style={{ opacity: mounted ? 1 : 0 }}
         >
           <img
-            src={getImagePath('/image/banner/tg-2.png')}
-            alt="平板背景圖片2"
+            src={getImagePath('/image/banner/dec.png')}
+            alt="平板裝飾圖片"
             loading="lazy"
+            className={styles.decorationImage}
           />
         </div>
 
@@ -197,7 +198,7 @@ const AnimatedBanner = () => {
             }`}
           >
             <img
-              src={getImagePath('/image/banner/logo.png')}
+              src={getImagePath('/image/banner/tg-logo.png')}
               alt="台灣經典小吃票選活動"
               className={styles.floatingLogo}
               loading="eager"
@@ -232,12 +233,13 @@ const AnimatedBanner = () => {
         />
       </div>
 
-      {/* 第二張背景圖 (bg-2) 帶淡入效果 */}
+      {/* 桌面裝飾圖片 - 霓虹燈動畫 */}
       <div className={styles.bannerBg2} style={{ opacity: mounted ? 1 : 0 }}>
         <img
-          src={getImagePath('/image/banner/bg-2.png')}
-          alt="背景圖片2"
+          src={getImagePath('/image/banner/web-dec.png')}
+          alt="桌面裝飾圖片"
           loading="lazy"
+          className={styles.decorationImage}
         />
       </div>
 

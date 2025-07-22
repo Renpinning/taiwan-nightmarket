@@ -9,7 +9,7 @@ import styles from './styles.module.css'
 
 export default function Home() {
   return (
-    <IndexLayout showBanner={false} title="台灣10大經典小吃" pageName="home">
+    <IndexLayout showBanner={false} title="台灣10大夜市" pageName="home">
       <AnimatedBanner />
       <div className={styles.pageContainer}>
         <main className={styles.mainContent}>
