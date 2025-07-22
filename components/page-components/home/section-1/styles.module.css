@@ -47,6 +47,27 @@
   color: #ffe372; 
 }
 
+/* 自定義文字反白顏色 */
+.textSectionParagraph::selection {
+  background-color: #ffe372; /* 使用黃色作為反白底色 */
+  color: #333333; /* 反白時的文字顏色 */
+}
+
+.textSectionParagraph::-moz-selection {
+  background-color: #ffe372; /* Firefox 瀏覽器支援 */
+  color: #333333;
+}
+
+.highlight::selection {
+  background-color: #ffffff; /* highlight 文字反白時使用白色底色 */
+  color: #333333;
+}
+
+.highlight::-moz-selection {
+  background-color: #ffffff;
+  color: #333333;
+}
+
 /* 響應式設計 */
 @media (max-width: 1024px) {
   .textSection {

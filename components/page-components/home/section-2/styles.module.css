@@ -2,23 +2,26 @@
   position: relative;
   width: 100%;
   padding: 40px 0;
+  min-height: 600px;
 }
 
-/* 背景圖層 */
+/* 背景圖層 - 調整為自動高度以完整顯示圖片 */
 .backgroundLayer {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto; /* 改為自動高度 */
+  min-height: 250px; /* 設置最小高度 */
   z-index: 1;
   opacity: 1;
 }
 
 .backgroundLayer img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto; /* 改為自動高度，保持比例 */
+  object-fit: contain; /* 改為 contain 以完整顯示圖片 */
+  display: block;
 }
 
 .Container {
@@ -31,39 +34,22 @@
   z-index: 2; 
 }
 
-/* 標題區 - 確保標題在 Container 內並正確顯示 */
+/* 標題區 */
 .sectionTitle {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  font-weight: bold;
-  color: #333;
   text-align: center;
   margin-top: 48px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   position: relative;
-  padding: 0;
-  background: transparent;
-  overflow: visible;
-  z-index: 3; /* 確保標題在背景之上 */
-}
-
-.titleText {
-  position: relative;
-  z-index: 2;
-  padding: 0 1rem;
-}
-
-/* 裝飾圖片 */
-.decorImage {
-  width: 32px; 
-  height: auto;
-  transition: all 0.3s ease;
-  display: block;
-  max-width: none;
   z-index: 3;
-  position: relative;
+}
+
+.titleImage {
+  max-width: 400px;
+  height: auto;
+  display: block;
 }
 
 /* 卡片容器 */
@@ -73,134 +59,231 @@
   justify-content: space-between;
   position: relative;
   z-index: 2;
+  gap: 24px;
+  margin-top: 60px; /* 縮短標題與內容的距離 */
 }
 
-/* 食物卡片 */
-.foodCard {
-  flex: 0 0 calc(20% - 13px); 
-  margin-bottom: 28px;
+/* 夜市卡片 - 減少陰影效果 */
+.nightMarketCard {
+  flex: 0 0 calc(20% - 20px);
+  margin-bottom: 32px;
   position: relative;
-  transition: transform 0.3s ease;
-  padding-top: 24px; 
-  padding-right: 24px; 
-  opacity: 0; 
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 大幅減少陰影 */
+  transition: none; /* 移除過渡效果 */
+  opacity: 0;
+  overflow: hidden;
+  border: 1px solid #e2e8f0; /* 添加淺色邊框 */
 }
 
-.foodCard:hover {
-  transform: translateY(-5px);
+/* 移除 hover 效果 */
+.nightMarketCard:hover {
+  /* 移除所有 hover 樣式 */
 }
 
-/* 卡片圖片容器 */
-.cardImageWrapper {
-  position: relative;
-  width: 100%;
-  padding-top: 68%; 
-}
-
-.cardImage {
+/* 編號標籤 - 減少陰影 */
+.numberTag {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 20px;
-}
-
-/* 右上角圖片標籤 */
-.cornerImageWrapper {
-  position: absolute;
-  top: 8px;
-  right: 4px; 
-  width: 64px; 
-  height: auto;
-  z-index: 3;
-  pointer-events: none; 
-}
-
-.cornerImage {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  z-index: 4;
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.2); /* 減少陰影 */
 }
 
 /* 卡片內容區 */
 .cardContent {
-  padding: 10px 0;
-  width: 100%; 
+  padding: 60px 24px 24px 24px;
+  position: relative;
 }
 
-.cardDescription {
-  font-size: 16px;
-  color: #333;
-  line-height: 1.5;
-  text-align: left;
+.marketName {
+  font-size: 22px;
+  font-weight: 800;
+  color: #2d3748;
+  margin-bottom: 16px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.marketName::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+.marketDescription {
+  font-size: 15px;
+  color: #4a5568;
+  line-height: 1.7;
+  text-align: justify;
+  margin: 0;
+  font-weight: 400;
 }
 
 /* 平板響應式設計 */
 @media (max-width: 1024px) {
-  .foodCard {
-    flex: 0 0 calc(33.33% - 11px); 
-    padding-top: 20px;
-    padding-right: 25px;
+  .nightMarketCard {
+    flex: 0 0 calc(33.33% - 18px);
   }
   
-  .cornerImageWrapper {
-    width: 60px; 
+  .CardContainer {
+    margin-top: 50px;
+  }
+  
+  .titleImage {
+    max-width: 350px;
+  }
+  
+  /* 平板版背景調整 */
+  .backgroundLayer {
+    min-height: 220px;
   }
 }
 
 /* 手機響應式設計 */
 @media (max-width: 768px) {
   .Container {
-    padding: 30px 20px;
-  }
-  .sectionTitle{
-    font-size: 30px;
+    padding: 30px 15px;
   }
   
-  .foodCard {
-    flex: 0 0 calc(50% - 10px); 
-    padding-top: 25px;
-    padding-right: 20px;
+  /* 手機版背景裝飾高度調整 */
+  .backgroundLayer {
+    min-height: 180px;
   }
   
-  .cornerImageWrapper {
-    width: 55px;
+  .CardContainer {
+    margin-top: 40px;
+    gap: 20px;
   }
   
-  .decorImage {
-    width: 24px; /* 手機上調整裝飾圖片大小 */
+  .sectionTitle {
+    margin-bottom: 2rem;
+  }
+  
+  .titleImage {
+    max-width: 280px;
+  }
+  
+  .nightMarketCard {
+    flex: 0 0 calc(50% - 10px);
+    border-radius: 16px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06); /* 手機版也減少陰影 */
+  }
+  
+  .cardContent {
+    padding: 50px 18px 18px 18px;
+  }
+  
+  .numberTag {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 0 0 16px 0;
+    box-shadow: 0 1px 3px rgba(102, 126, 234, 0.2);
+  }
+  
+  .marketName {
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+  
+  .marketName::after {
+    width: 35px;
+    height: 2px;
+  }
+  
+  .marketDescription {
+    font-size: 13px;
+    line-height: 1.6;
   }
 }
 
 @media (max-width: 480px) {
   .Container {
-    padding: 0px 12px;
+    padding: 20px 12px;
   }
   
-  .foodCard {
-    flex: 0 0 calc(50% - 8px); 
-    padding-top: 20px;
-    padding-right: 8px;
-    margin-bottom: 4px; 
+  /* 小螢幕背景裝飾高度調整 */
+  .backgroundLayer {
+    min-height: 150px;
   }
   
-  .cornerImageWrapper {
-    width: 48px; 
-    right: -2px;
+  .CardContainer {
+    margin-top: 30px;
+    gap: 16px;
   }
   
-  .cardDescription {
+  .titleImage {
+    max-width: 240px;
+  }
+  
+  .nightMarketCard {
+    flex: 0 0 calc(50% - 8px);
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* 小螢幕版也減少陰影 */
+  }
+  
+  .cardContent {
+    padding: 45px 16px 16px 16px;
+  }
+  
+  .numberTag {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    border-radius: 0 0 12px 0;
+    box-shadow: 0 1px 2px rgba(102, 126, 234, 0.15);
+  }
+  
+  .marketName {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .marketName::after {
+    width: 30px;
+  }
+  
+  .marketDescription {
     font-size: 12px;
+    line-height: 1.5;
   }
-  
-  .cardImage {
-    border-radius: 12px; 
-  }
-  
-  .decorImage {
-    width: 20px; 
-  }
+}
+
+/* 動畫效果 */
+.nightMarketCard.animate__fadeIn {
+  opacity: 1;
+}
+
+/* 自定義文字選取顏色 - 應用到特定元素 */
+.marketName::selection,
+.marketDescription::selection {
+  background-color: rgba(102, 126, 234, 0.2);
+  color: inherit;
+}
+
+.marketName::-moz-selection,
+.marketDescription::-moz-selection {
+  background-color: rgba(102, 126, 234, 0.2);
+  color: inherit;
 }
