@@ -5,23 +5,28 @@
   min-height: 600px;
 }
 
-/* 背景圖層 - 調整為自動高度以完整顯示圖片 */
+/* 背景圖層 - 調整為水平置中 */
 .backgroundLayer {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  height: auto; /* 改為自動高度 */
-  min-height: 250px; /* 設置最小高度 */
+  height: auto;
+  min-height: 250px;
   z-index: 1;
   opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .backgroundLayer img {
   width: 100%;
-  height: auto; /* 改為自動高度，保持比例 */
-  object-fit: contain; /* 改為 contain 以完整顯示圖片 */
+  height: auto;
+  object-fit: contain;
   display: block;
+  margin: 0 auto;
 }
 
 .Container {
@@ -34,22 +39,24 @@
   z-index: 2; 
 }
 
-/* 標題區 */
+/* 標題區 - 確保完全置中 */
 .sectionTitle {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 48px;
+  margin-top: 4px;
   margin-bottom: 3rem;
   position: relative;
   z-index: 3;
+  width: 100%;
 }
 
 .titleImage {
   max-width: 400px;
   height: auto;
   display: block;
+  margin: 0 auto;
 }
 
 /* 卡片容器 */
@@ -60,7 +67,7 @@
   position: relative;
   z-index: 2;
   gap: 24px;
-  margin-top: 60px; /* 縮短標題與內容的距離 */
+  margin-top: 100px;
 }
 
 /* 夜市卡片 - 減少陰影效果 */
@@ -71,11 +78,11 @@
   background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
   border-radius: 20px;
   padding: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 大幅減少陰影 */
-  transition: none; /* 移除過渡效果 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: none;
   opacity: 0;
   overflow: hidden;
-  border: 1px solid #e2e8f0; /* 添加淺色邊框 */
+  border: 1px solid #e2e8f0;
 }
 
 /* 移除 hover 效果 */
@@ -99,7 +106,7 @@
   font-weight: bold;
   font-size: 18px;
   z-index: 4;
-  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.2); /* 減少陰影 */
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.2);
 }
 
 /* 卡片內容區 */
@@ -150,19 +157,40 @@
   }
   
   .titleImage {
-    max-width: 350px;
+    max-width: 280px;
   }
   
   /* 平板版背景調整 */
   .backgroundLayer {
     min-height: 220px;
   }
+  .Wrapper {
+  padding: 20px 0;
+}
+}
+
+/* 直式平板特殊樣式 */
+@media (max-width: 1024px) and (orientation: portrait) {
+  .backgroundLayer {
+    min-height: 250px;
+  }
+  
+  .backgroundLayer img {
+    object-position: bottom; /* 圖片以底部為基準顯示 */
+  }
+  
+  .titleImage {
+    max-width: 320px;
+  }
+  .CardContainer {
+    margin-top: 70px;
+  }
 }
 
 /* 手機響應式設計 */
 @media (max-width: 768px) {
   .Container {
-    padding: 30px 15px;
+    padding: 4px 15px;
   }
   
   /* 手機版背景裝飾高度調整 */
@@ -171,12 +199,12 @@
   }
   
   .CardContainer {
-    margin-top: 40px;
+    margin-top: 70px;
     gap: 20px;
   }
   
   .sectionTitle {
-    margin-bottom: 2rem;
+    margin-bottom: 2px;
   }
   
   .titleImage {
@@ -186,7 +214,7 @@
   .nightMarketCard {
     flex: 0 0 calc(50% - 10px);
     border-radius: 16px;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06); /* 手機版也減少陰影 */
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
   }
   
   .cardContent {
@@ -219,7 +247,7 @@
 
 @media (max-width: 480px) {
   .Container {
-    padding: 20px 12px;
+    padding: 4px 12px;
   }
   
   /* 小螢幕背景裝飾高度調整 */
@@ -228,7 +256,7 @@
   }
   
   .CardContainer {
-    margin-top: 30px;
+    margin-top: 100px;
     gap: 16px;
   }
   
@@ -240,7 +268,7 @@
     flex: 0 0 calc(50% - 8px);
     margin-bottom: 20px;
     border-radius: 12px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* 小螢幕版也減少陰影 */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   }
   
   .cardContent {

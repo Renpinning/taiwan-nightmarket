@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 const Section2 = () => {
   const [visibleCards, setVisibleCards] = useState([])
   const [isMobile, setIsMobile] = useState(false)
+  const [isTabletPortrait, setIsTabletPortrait] = useState(false)
   const cardRefs = useRef([])
   const router = useRouter()
 
@@ -14,15 +15,21 @@ const Section2 = () => {
 
   // 檢測螢幕尺寸
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
+    const checkScreenSize = () => {
+      const width = window.innerWidth
+      const height = window.innerHeight
+
+      // 修改邏輯：768px 以下才是手機，768px 剛好是平板邊界
+      setIsMobile(width < 768)
+      // 檢測直式平板 (寬度在 768-1024px 且高度大於寬度)
+      setIsTabletPortrait(width >= 768 && width <= 1024 && height > width)
     }
 
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
 
     return () => {
-      window.removeEventListener('resize', checkMobile)
+      window.removeEventListener('resize', checkScreenSize)
     }
   }, [])
 
@@ -138,15 +145,21 @@ const Section2 = () => {
   }
 
   // 根據螢幕大小選擇背景圖片
-  const backgroundImage = isMobile
-    ? getImagePath('/image/market/m-dec.png')
-    : getImagePath('/image/market/w-dec.png')
+  const getBackgroundImage = () => {
+    if (isMobile) {
+      return getImagePath('/image/market/m-dec.png')
+    } else if (isTabletPortrait) {
+      return getImagePath('/image/market/t-dec.png')
+    } else {
+      return getImagePath('/image/market/w-dec.png')
+    }
+  }
 
   return (
     <div className={styles.Wrapper}>
       {/* 背景圖層 */}
       <div className={styles.backgroundLayer}>
-        <img src={backgroundImage} alt="裝飾背景" />
+        <img src={getBackgroundImage()} alt="裝飾背景" />
       </div>
 
       {/* 內容區 */}
