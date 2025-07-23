@@ -1,69 +1,23 @@
 .section5Wrapper {
   position: relative;
   width: 100%;
-  min-height: 900px; 
-  background-color: transparent;
-  overflow: visible; 
-  padding: 80px 0 3rem; 
-}
-
-/* 底層背景圖層 */
-.bottomBackgroundLayer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1; 
-  opacity: 1;
-}
-
-.bottomBackgroundLayer img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-
-/* 第二層背景圖層 */
-.backgroundLayer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2; /* 高於底層背景 */
-  opacity: 0.9;
-}
-
-.backgroundLayer img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  will-change: transform; /* 優化圖層 */
-}
-
-/* 手機版背景和桌面版背景共用樣式 */
-.mobileBackground,
-.desktopBackground {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  min-height: 600px;
+  background: transparent;
+  padding: 80px 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .section5Container {
   position: relative;
   width: 100%;
-  max-width: 90rem;
+  max-width: 1200px;
   margin: 0 auto;
-  z-index: 3; 
-  padding: 0 1.25rem;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: visible;
   opacity: 0;
   transition: opacity 0.8s ease;
 }
@@ -79,93 +33,82 @@
   justify-content: center;
   font-size: 3rem;
   font-weight: bold;
-  color: #333;
+  color: #264e75;
   text-align: center;
-  margin-top: 48px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 4rem;
   position: relative;
-  padding: 0;
-  background: transparent;
-  overflow: visible;
 }
 
 .titleText {
   position: relative;
   z-index: 2;
-  padding: 0 1rem;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .decorImage {
-  width: 100px;
+  width: 20px;
   height: auto;
   transition: all 0.3s ease;
+  vertical-align: middle;
 }
 
-/* 獎品展示區 - 第一排 */
-.prizesRowTop {
-  display: flex;
-  justify-content: center;
+/* 獎品展示區 - 桌機一排，其他裝置響應式 */
+.prizesContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  gap: 1.5rem;
   width: 100%;
-  margin-bottom: 1.5rem;
-  gap: 1rem;
-  flex-wrap: nowrap; 
-}
-
-/* 獎品展示區 - 第二排 */
-.prizesRowBottom {
-  display: flex;
-  justify-content: center;
-  width: 75%;
-  gap: 2rem;
-  flex-wrap: nowrap; 
+  max-width: 1300px;
+  margin-bottom: 3rem;
 }
 
 /* 獎品項目 */
 .prizeItem {
-  flex: 0 0 calc(30% - 0.5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
-  background-color: transparent;
-  max-width: 320px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: opacity 0.3s ease;
   opacity: 0;
-  transition: opacity 0.5s ease, transform 0.3s ease;
+  transform: translateY(20px);
+  border: 1px solid rgba(200, 200, 200, 0.3);
 }
 
 .prizeItem.visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
-.prizeItem:hover {
-  transform: translateY(-2px);
-}
-
-.prizesRowBottom .prizeItem {
-  flex: 0 0 calc(35% - 1rem);
-  max-width: 320px; 
-}
-
+/* 獎品圖片容器 - 統一尺寸 */
 .prizeImageContainer {
-  width: 100%;
-  max-width: 100%; 
-  height: 0;
-  padding-bottom: 85%; 
+  width: 200px;
+  height: 200px;
   position: relative;
   overflow: hidden;
-  border-radius: 0;
-  box-shadow: none;
-  background-color: transparent;
+  border-radius: 10px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
 .prizeImage {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 0;
+  transition: transform 0.3s ease;
+  padding: 10px;
+}
+
+.prizeItem:hover .prizeImage {
+  transform: scale(1.05);
 }
 
 /* 獎品資訊 */
@@ -178,176 +121,215 @@
 }
 
 .prizeRank {
-  font-size: 24px;
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #254b83;
-  margin-bottom: 0.3rem;
+  color: #e74c3c;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+}
+
+/* 自定義文字選取顏色 */
+.prizeRank::selection {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.prizeRank::-moz-selection {
+  background-color: #e74c3c;
+  color: white;
 }
 
 .prizeName {
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 0.1rem;
+  font-size: 1.1rem;
+  color: #34495e;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* 自定義物品名字文字選取顏色 - 保持預設藍色 */
+.prizeName::selection {
+  background-color: #88c4ff;
+  color: white;
+}
+
+.prizeName::-moz-selection {
+  background-color: #88c4ff;
+  color: white;
 }
 
 .prizeSource {
-  font-size: 0.8rem;
-  color: #5e5656;
+  font-size: 0.9rem;
+  color: #7f8c8d;
   text-align: center;
-  width: 100%;
-  margin-top: 2rem; 
+  font-style: italic;
+  opacity: 0.8;
 }
-
-.invisible {
-  opacity: 0;
-}
-
 
 /* 響應式設計 - 大型平板電腦 */
-@media (max-width: 75rem) { /* 1200px */
+@media (max-width: 1024px) {
   .section5Wrapper {
-    min-height: 800px;
-    padding: 60px 0 2.5rem;
+    padding: 60px 0 50px;
   }
   
   .sectionTitle {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
   
   .decorImage {
-    width: 50px;
+    width: 12px;
+  }
+  
+  .prizesContainer {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2.5rem;
+    max-width: 800px;
+  }
+  
+  .prizeImageContainer {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .prizeItem {
+    padding: 1.5rem;
   }
 }
 
-/* 響應式設計 - 中型設備 */
-@media (max-width: 62rem) { /* 992px */
+/* 響應式設計 - 平板電腦 */
+@media (max-width: 768px) {
   .section5Wrapper {
-    min-height: auto; 
-    padding: 2.5rem 0 3rem;
+    padding: 50px 0 40px;
+    min-height: auto;
   }
   
-  .prizesRowTop {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-  
-  .prizesRowBottom {
-    flex-wrap: wrap;
-    width: 90%;
-    gap: 1.5rem;
-  }
-  
-  .prizeItem, .prizesRowBottom .prizeItem {
-    flex: 0 0 calc(45% - 1rem);
-    max-width: 280px;
+  .section5Container {
+    padding: 0 1.5rem;
   }
   
   .sectionTitle {
     font-size: 2.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .titleText {
+    padding: 0 1.5rem;
   }
   
   .decorImage {
-    width: 45px;
-  }
-}
-
-/* 響應式設計 - 平板電腦和手機 */
-@media (max-width: 48rem) { /* 768px - 手機尺寸臨界點 */
-  .section5Wrapper {
-    padding: 2rem 0 2.5rem;
+    width: 15px;
   }
   
-  .prizeItem, .prizesRowBottom .prizeItem {
-    flex: 0 0 calc(45% - 0.5rem);
-    max-width: 220px;
+  .prizesContainer {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 600px;
   }
   
-  .prizeRank {
-    font-size: 24px;
-  }
-  
-  .prizeName {
-    font-size: 16px;
-  }
-  
-  .sectionTitle {
-    font-size: 32px;
-    margin-bottom: 16px;
-  }
-  
-  .decorImage {
-    width: 60px;
-  }
-  
-  .mobileBackground {
-    object-position: center center; 
-  }
-  
-  .backgroundLayer {
-    opacity: 0.85; 
-  }
-}
-
-/* 響應式設計 - 大型手機 */
-@media (max-width: 36rem) { 
-  .section5Wrapper {
-    padding: 1.8rem 0 2.5rem;
-  }
-  
-  .sectionTitle {
-    font-size: 30px;
-    margin-bottom: 1.5rem;
+  .prizeImageContainer {
+    width: 160px;
+    height: 160px;
   }
   
   .prizeRank {
-    font-size: 20px;
-  }
-}
-
-/* 響應式設計 - 小型手機 */
-@media (max-width: 30rem) { /* 480px */
-  .section5Wrapper {
-    padding: 1.5rem 0 2rem;
-  }
-  
-  .prizesRowTop, .prizesRowBottom {
-    width: 100%;
-    gap: 1rem;
-  }
-  
-  .prizeItem, .prizesRowBottom .prizeItem {
-    flex: 0 0 calc(90% - 0.5rem);
-    max-width: 200px;
-    margin-bottom: 0.8rem;
-  }
-  
-  .sectionTitle {
-    margin-bottom: 1.2rem;
-  }
-  
-  .prizeRank {
-    font-size: 20px;
+    font-size: 1.2rem;
   }
   
   .prizeName {
     font-size: 1rem;
   }
+}
+
+/* 響應式設計 - 手機 */
+@media (max-width: 600px) {
+  .section5Wrapper {
+    padding: 40px 0 30px;
+  }
   
-  .prizeSource {
-    margin-top: 1.5rem;
-    font-size: 0.75rem;
+  .section5Container {
+    padding: 0 1rem;
+  }
+  
+  .prizesContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 2rem;
+    max-width: 350px;
+  }
+  
+  .prizeItem {
+    padding: 1.5rem;
+  }
+  
+  .prizeImageContainer {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .titleText {
+    padding: 0 1rem;
   }
 }
 
-/* 超小型設備 */
-@media (max-width: 23.75rem) { /* 380px */
+/* 響應式設計 - 小型手機 */
+@media (max-width: 480px) {
   .section5Wrapper {
-    padding: 1.2rem 0 1.8rem;
+    padding: 30px 0 25px;
   }
-  .prizeItem, .prizesRowBottom .prizeItem {
-    max-width: 170px;
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .decorImage {
+    width: 18px;
+  }
+  
+  .prizeImageContainer {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .prizeItem {
+    padding: 1.2rem;
+  }
+  
+  .prizeRank {
+    font-size: 1.1rem;
+  }
+  
+  .prizeName {
+    font-size: 0.95rem;
+  }
+  
+  .prizeSource {
+    font-size: 0.8rem;
+  }
+}
+
+/* 響應式設計 - 超小型設備 */
+@media (max-width: 380px) {
+  .section5Container {
+    padding: 0 0.8rem;
+  }
+  
+  .prizesContainer {
+    max-width: 280px;
+  }
+  
+  .prizeImageContainer {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .prizeItem {
+    padding: 1rem;
   }
 }
