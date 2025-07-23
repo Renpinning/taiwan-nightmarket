@@ -6,12 +6,44 @@ import { useRouter } from 'next/router'
 const Section3 = () => {
   const [leftSectionVisible, setLeftSectionVisible] = useState(false)
   const [rightSectionVisible, setRightSectionVisible] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isTabletPortrait, setIsTabletPortrait] = useState(false)
   const leftSectionRef = useRef(null)
   const rightSectionRef = useRef(null)
   const router = useRouter()
 
   // 創建一個函數來處理圖片路徑
   const getImagePath = (path) => `${router.basePath}${path}`
+
+  // 檢測螢幕尺寸
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const width = window.innerWidth
+      const height = window.innerHeight
+
+      setIsMobile(width < 768)
+      // 檢測直式平板 (寬度在 768-1024px 且高度大於寬度)
+      setIsTabletPortrait(width >= 768 && width <= 1024 && height > width)
+    }
+
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+
+    return () => {
+      window.removeEventListener('resize', checkScreenSize)
+    }
+  }, [])
+
+  // 根據螢幕大小選擇背景圖片
+  const getBackgroundImage = () => {
+    if (isMobile) {
+      return getImagePath('/image/market/m-dec-02.png')
+    } else if (isTabletPortrait) {
+      return getImagePath('/image/market/t-dec-02.png')
+    } else {
+      return getImagePath('/image/market/w-dec-02.png')
+    }
+  }
 
   // 跳轉到票選活動騰訊表單
   const redirectToVoteTencentForm = () => {
@@ -95,262 +127,158 @@ const Section3 = () => {
     <div className={styles.section3Wrapper}>
       {/* 背景圖層 */}
       <div className={styles.backgroundLayer}>
-        <img src={getImagePath('/image/food/bg-5.png')} alt="背景" />
+        <img src={getBackgroundImage()} alt="背景" />
       </div>
 
       <div className={styles.section3Container}>
-        {/* 左側區域 - 票選活動 */}
-        <div
-          ref={leftSectionRef}
-          className={`${styles.leftSection} ${
-            leftSectionVisible
-              ? 'animate__animated animate__fadeInLeft'
-              : styles.invisible
-          }`}
-          style={{
-            backgroundImage: `url('${getImagePath('/image/food/bg-7.png')}')`,
-          }}
-        >
-          {/* 票選活動標題圖片 */}
-          <div className={styles.titleImageContainer}>
-            <img
-              src={getImagePath('/image/food/vote.png')}
-              alt="票選活動"
-              className={styles.titleImage}
-            />
-          </div>
+        {/* 標題區域 - 像 Section2 那樣置中 */}
+        <div className={styles.sectionTitle}>
+          <img
+            src={getImagePath('/image/market/title-2.png')}
+            alt="活動標題"
+            className={styles.titleImage}
+          />
+        </div>
 
-          {/* 活動描述 */}
-          <p className={styles.activityDescription}>
-            我們將在央廣官網和社群媒體平台介紹台灣10大經典小吃。
-            <br />
-            透過此Google表單／騰訊表單 投票，選出您心目中的最愛小吃。
-          </p>
-
-          {/* 按鈕容器 */}
-          <div className={styles.buttonsContainer}>
-            {/* Google 表單按鈕 */}
-            <div className={styles.tencentButtonWrapper}>
-              <button
-                className={styles.tencentButton}
-                onClick={redirectToVoteGoogleForm}
-              >
-                <img
-                  src={getImagePath('/image/food/forms-1.png')}
-                  alt="Google表單"
-                  className={styles.tencentIcon}
-                />
-                <span>投票Google表單</span>
-              </button>
+        <div className={styles.activitiesContainer}>
+          {/* 左側區域 - 票選活動 */}
+          <div
+            ref={leftSectionRef}
+            className={`${styles.leftSection} ${
+              leftSectionVisible
+                ? 'animate__animated animate__fadeInLeft'
+                : styles.invisible
+            }`}
+          >
+            {/* 票選活動小標題 */}
+            <div className={styles.sectionSubtitle}>
+              <span>票選活動</span>
             </div>
 
-            {/* 騰訊表單按鈕 */}
-            <div className={styles.tencentButtonWrapper}>
-              <button
-                className={styles.tencentButton}
-                onClick={redirectToVoteTencentForm}
-              >
-                <img
-                  src={getImagePath('/image/food/forms.png')}
-                  alt="騰訊表單"
-                  className={styles.tencentIcon}
-                />
-                <span>投票騰訊表單</span>
-              </button>
+            {/* 票選活動內容區 */}
+            <div className={styles.contentBox}>
+              {/* 活動描述 */}
+              <p className={styles.activityDescription}>
+                我們將在央廣官網和社群媒體平台介紹台灣10大夜市。
+                <br />
+                透過 Google表單/騰訊表單
+                投票，選出您心目中最想造訪的台灣夜市，並請標註您是從哪個節目得知此活動。
+              </p>
+
+              {/* 按鈕容器 */}
+              <div className={styles.buttonsContainer}>
+                {/* Google 表單按鈕 */}
+                <div className={styles.tencentButtonWrapper}>
+                  <button
+                    className={styles.tencentButton}
+                    onClick={redirectToVoteGoogleForm}
+                  >
+                    <img
+                      src={getImagePath('/image/market/forms-1.png')}
+                      alt="Google表單"
+                      className={styles.tencentIcon}
+                    />
+                    <span>投票Google表單</span>
+                  </button>
+                </div>
+
+                {/* 騰訊表單按鈕 */}
+                <div className={styles.tencentButtonWrapper}>
+                  <button
+                    className={styles.tencentButton}
+                    onClick={redirectToVoteTencentForm}
+                  >
+                    <img
+                      src={getImagePath('/image/market/forms.png')}
+                      alt="騰訊表單"
+                      className={styles.tencentIcon}
+                    />
+                    <span>投票騰訊表單</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* 活動日期 */}
-          <div className={styles.activityPeriod}>
-            114年4月20日～114年6月30日 <br></br>（得獎公布日期：114年7月15日）
+          {/* 右側區域 - 徵文活動 */}
+          <div
+            ref={rightSectionRef}
+            className={`${styles.rightSection} ${
+              rightSectionVisible
+                ? 'animate__animated animate__fadeInRight'
+                : styles.invisible
+            }`}
+          >
+            {/* 徵文活動小標題 */}
+            <div className={styles.sectionSubtitle}>
+              <span>徵文活動</span>
+            </div>
+
+            {/* 徵文活動內容區 */}
+            <div className={styles.contentBox}>
+              {/* 徵文活動描述 */}
+              <p className={styles.activityDescription}>
+                主題：「我與台灣夜市的故事」
+                <br />
+                字數要求：50-100字
+                <br />
+                內容：分享您與台灣夜市之間的 難忘故事或特別經歷。
+                <br />
+                <br />
+                投稿方式： <br />
+                a. 電子郵件：發送至 rtifans@rti.org.tw <br />
+                b. 線上投稿：透過 Google表單/騰訊表單 <br />
+                請在投票或投稿時，標註您是從哪個節目得知此活動
+              </p>
+
+              {/* 徵文活動按鈕 */}
+              <div className={styles.buttonsContainer}>
+                {/* Google 表單按鈕 */}
+                <div className={styles.tencentButtonWrapper}>
+                  <button
+                    className={styles.tencentButton}
+                    onClick={redirectToWriteGoogleForm}
+                  >
+                    <img
+                      src={getImagePath('/image/market/forms-1.png')}
+                      alt="Google表單"
+                      className={styles.tencentIcon}
+                    />
+                    <span>徵文Google表單</span>
+                  </button>
+                </div>
+
+                {/* 騰訊表單按鈕 */}
+                <div className={styles.tencentButtonWrapper}>
+                  <button
+                    className={styles.tencentButton}
+                    onClick={redirectToWriteTencentForm}
+                  >
+                    <img
+                      src={getImagePath('/image/market/forms.png')}
+                      alt="騰訊表單"
+                      className={styles.tencentIcon}
+                    />
+                    <span>徵文騰訊表單</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* 右側區域 - 徵文活動 */}
-        <div
-          ref={rightSectionRef}
-          className={`${styles.rightSection} ${
-            rightSectionVisible
-              ? 'animate__animated animate__fadeInRight'
-              : styles.invisible
-          }`}
-          style={{
-            backgroundImage: `url('${getImagePath('/image/food/bg-7.png')}')`,
-          }}
-        >
-          {/* 徵文活動內容 */}
-          <div className={styles.rightContentContainer}>
-            {/* 徵文活動標題圖片 */}
-            <div className={styles.titleImageContainer}>
-              <img
-                src={getImagePath('/image/food/write.png')}
-                alt="徵文活動"
-                className={styles.titleImage}
-              />
-            </div>
-
-            {/* 徵文活動描述 */}
-            <p className={styles.activityDescription}>
-              主題：「我與台灣小吃的故事」
-              <br />
-              字數：50-100字
-              <br />
-              內容：分享您與台灣小吃之間的 難忘故事或特別經歷。
-              <br />
-              <br />
-              投稿方式： <br />
-              a. 電子郵件：發送至 rtifans@rti.org.tw <br />
-              b. 線上投稿：透過以下表單
-            </p>
-
-            {/* 徵文活動按鈕 */}
-            <div className={styles.buttonsContainer}>
-              {/* Google 表單按鈕 */}
-              <div className={styles.tencentButtonWrapper}>
-                <button
-                  className={styles.tencentButton}
-                  onClick={redirectToWriteGoogleForm}
-                >
-                  <img
-                    src={getImagePath('/image/food/forms-1.png')}
-                    alt="Google表單"
-                    className={styles.tencentIcon}
-                  />
-                  <span>徵文Google表單</span>
-                </button>
-              </div>
-
-              {/* 騰訊表單按鈕 */}
-              <div className={styles.tencentButtonWrapper}>
-                <button
-                  className={styles.tencentButton}
-                  onClick={redirectToWriteTencentForm}
-                >
-                  <img
-                    src={getImagePath('/image/food/forms.png')}
-                    alt="騰訊表單"
-                    className={styles.tencentIcon}
-                  />
-                  <span>徵文騰訊表單</span>
-                </button>
-              </div>
-            </div>
-
-            {/* 徵文活動日期 */}
-            <div className={styles.activityPeriod}>
-              114年4月20日～114年6月30日 <br></br>（得獎公布日期：114年7月15日）
-            </div>
-          </div>
+        {/* 活動時間 - 獨立放在兩個框下方，手機版自動折行 */}
+        <div className={styles.activityPeriod}>
+          <span className={styles.desktopTime}>
+            114年08月10日～114年10月10日（得獎公布日期：114年10月15日）
+          </span>
+          <span className={styles.mobileTime}>
+            114年08月10日～114年10月10日
+            <br />
+            （得獎公布日期：114年10月15日）
+          </span>
         </div>
       </div>
-
-      {/* 自訂樣式 */}
-      <style jsx global>{`
-        /* 按鈕容器統一樣式 */
-        .${styles.buttonsContainer} {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          margin-bottom: 2.5rem;
-          width: 100%;
-        }
-
-        /* 右側內容容器 */
-        .${styles.rightContentContainer} {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          padding: 0;
-        }
-
-        /* 修改左右區塊寬度為各一半 */
-        .${styles.leftSection}, .${styles.rightSection} {
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-          border-radius: 1.5rem;
-          padding: 2.5rem;
-          position: relative;
-          border: 0.375rem solid #ffda7e;
-        }
-
-        .${styles.section3Container} {
-          justify-content: space-between;
-          gap: 1.5rem;
-        }
-
-        /* 移除左側容器左負邊距，使兩側標題對齊 */
-        .${styles.leftSection}
-          .${styles.titleImageContainer},
-          .${styles.rightSection}
-          .${styles.titleImageContainer} {
-          left: 0;
-          width: 100%;
-          text-align: center;
-          display: flex;
-          justify-content: center;
-          margin-bottom: 1.25rem;
-        }
-
-        /* 統一兩側的活動描述樣式 */
-        .${styles.leftSection}
-          .${styles.activityDescription},
-          .${styles.rightSection}
-          .${styles.activityDescription} {
-          padding-right: 0;
-          text-align: left;
-          width: 100%;
-        }
-
-        /* 動畫延遲設定 */
-        .${styles.rightSection}.animate__animated {
-          animation-delay: 0.3s;
-        }
-
-        /* 統一活動日期樣式 */
-        .${styles.leftSection}
-          .${styles.activityPeriod},
-          .${styles.rightSection}
-          .${styles.activityPeriod} {
-          width: auto;
-          margin: 0 auto;
-          margin-top: auto;
-        }
-
-        /* 響應式調整 */
-        @media screen and (max-width: 768px) {
-          .${styles.section3Container} {
-            flex-direction: column;
-          }
-
-          .${styles.leftSection}, .${styles.rightSection} {
-            width: 100% !important;
-            margin-bottom: 2rem;
-            padding: 2rem;
-          }
-
-          .${styles.buttonsContainer} {
-            width: 100%;
-            align-items: center;
-          }
-        }
-
-        @media (max-width: 48rem) {
-          .${styles.leftSection}, .${styles.rightSection} {
-            padding: 1.5rem;
-          }
-
-          .${styles.buttonsContainer} {
-            width: 100%;
-          }
-
-          .${styles.tencentButton} {
-            width: 100%;
-            max-width: 18.75rem;
-          }
-        }
-      `}</style>
     </div>
   )
 }
