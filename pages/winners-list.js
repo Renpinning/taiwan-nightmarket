@@ -24,9 +24,9 @@ export default function WinnersList() {
         <main className={styles.mainContent}>
           <Section7 className={styles.section} />
         </main>
-        <main className={styles.mainContent}>
+        {/* <main className={styles.mainContent}>
           <Section8 className={styles.section} />
-        </main>
+        </main> */}
       </div>
     </IndexLayout>
   )

@@ -21,26 +21,26 @@ const Section7 = () => {
 
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.2, // 當元素20%進入視口時觸發
+      rootMargin: '50px 0px',
+      threshold: 0.1,
     }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setSectionVisible(true)
-          // 一旦元素顯示，不再觀察
+          setTimeout(() => {
+            setSectionVisible(true)
+          }, 100)
+
           observer.unobserve(entry.target)
         }
       })
     }, observerOptions)
 
-    // 開始觀察區塊
     if (sectionRef.current) {
       observer.observe(sectionRef.current)
     }
 
-    // 清理函數
     return () => {
       const currentRef = sectionRef.current
       if (currentRef) {
@@ -49,80 +49,55 @@ const Section7 = () => {
     }
   }, [])
 
-  // 獎項資料
+  // 更新的獎項資料
   const awardData = [
     {
       category: '徵文第一名',
-      prize: '鋼珠筆禮盒（內含筆記本）三套組',
+      prize: '太陽眼鏡',
       icon: <FaTrophy />,
       iconColor: '#FFD700', // 金色
-      winners: ['李o容'],
+      winners: ['待公布'],
     },
     {
-      category: '徵文第二名',
-      prize: '鋼珠筆三套組',
+      category: '徵文第二名和第三名',
+      prize: '造型墨鏡',
       icon: <FaMedal />,
       iconColor: '#C0C0C0', // 銀色
-      winners: ['陳o'],
-    },
-    {
-      category: '徵文第三至五名',
-      prize: '鋼珠筆禮盒一組',
-      icon: <FaMedal />,
-      iconColor: '#CD7F32', // 銅色
-      winners: ['魚o寶', 'zn•fer', '陳o'],
+      winners: ['待公布'],
     },
     {
       category: '徵文佳作獎',
-      prize: '翠玉白菜加熱眼罩',
+      prize: '胖胖包（共5名）',
       icon: <FaAward />,
-      iconColor: '#6A8D73', // 綠色
-      winners: ['韓o波', '田o'],
+      iconColor: '#CD7F32', // 銅色
+      winners: ['待公布'],
     },
     {
       category: '票選幸運獎',
-      prize: '雙筷組',
+      prize: '鴨舌帽（共8名）',
       icon: <FaGift />,
       iconColor: '#5B84B1', // 藍色
-      winners: [
-        '金o',
-        '梁o山',
-        '張o田',
-        '陳o龍',
-        '曹o',
-        '米o強',
-        '一棵o花的樹',
-        '張o峰',
-        '褚o榮',
-        '泥o娃',
-      ],
+      winners: ['待公布'],
     },
   ]
 
   return (
     <div className={styles.section7Wrapper} ref={sectionRef}>
-      {/* 底層背景圖層 */}
-      <div className={styles.bottomBackgroundLayer}>
-        <img src={getImagePath('/image/food/bg-5.png')} alt="背景" />
-      </div>
-
       <div
         className={`${styles.section7Container} ${
-          sectionVisible
-            ? 'animate__animated animate__fadeInUp'
-            : styles.invisible
+          sectionVisible ? styles.visible : ''
         }`}
       >
         {/* 標題區 */}
         <h2 className={styles.sectionTitle}>
           <img
-            src={getImagePath('/image/gift/bg-2.png')}
+            src={getImagePath('/image/gift/bg-3.png')}
             alt="裝飾"
             className={styles.decorImage}
           />
           <span className={styles.titleText}>得獎名單</span>
           <img
-            src={getImagePath('/image/gift/bg-2.png')}
+            src={getImagePath('/image/gift/bg-3.png')}
             alt="裝飾"
             className={styles.decorImage}
           />
@@ -131,7 +106,13 @@ const Section7 = () => {
         {/* 得獎名單內容 */}
         <div className={styles.awardsContainer}>
           {awardData.map((award, index) => (
-            <div key={index} className={styles.awardCard}>
+            <div
+              key={index}
+              className={`${styles.awardCard} ${
+                sectionVisible ? styles.visible : ''
+              }`}
+              style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
+            >
               <h3 className={styles.awardTitle}>
                 <span
                   className={styles.awardIcon}
@@ -156,18 +137,6 @@ const Section7 = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* 恭喜訊息 */}
-        <div
-          className={styles.congratsMessage}
-          style={{
-            background: 'transparent',
-            border: 'none',
-            boxShadow: 'none',
-          }}
-        >
-          恭喜以上得獎者！
         </div>
       </div>
     </div>
