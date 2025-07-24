@@ -58,7 +58,7 @@
 }
 
 .titleImage {
-  max-width: 400px;
+  max-width: 460px;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -262,7 +262,7 @@
   }
   
   .titleImage {
-    max-width: 350px;
+    max-width: 400px;
   }
 
   .sectionTitle {
@@ -277,7 +277,7 @@
   }
   
   .titleImage {
-    max-width: 320px;
+    max-width: 360px;
   }
 
   .sectionTitle {
@@ -323,7 +323,7 @@
   }
   
   .titleImage {
-    max-width: 350px;
+    max-width: 360px;
   }
   
   .tencentButtonWrapper {
@@ -495,7 +495,7 @@
   }
   
   .titleImage {
-    max-width: 280px;
+    max-width: 300px;
   }
 
   .leftSection, .rightSection {
@@ -576,7 +576,7 @@
   }
 
   .titleImage {
-    max-width: 240px;
+    max-width: 300px;
   }
 
   .sectionTitle {

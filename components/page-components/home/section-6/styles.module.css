@@ -1,378 +1,460 @@
 .section6Wrapper {
-    position: relative;
-    width: 100%;
-    min-height: 700px; 
-    background-color: transparent;
-    overflow: visible; 
-    padding: 24px 20px 0 3rem; 
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  background: url('/image/gift/bg-5.png') center/cover no-repeat;
+  padding: 80px 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section6Container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.section6Container.visible {
+  opacity: 1;
+}
+
+/* 自定義文字選取顏色 - 應用到整個組件 */
+.section6Container ::selection {
+  background-color: rgba(102, 126, 234, 0.2);
+  color: inherit;
+}
+
+.section6Container ::-moz-selection {
+  background-color: rgba(102, 126, 234, 0.2);
+  color: inherit;
+}
+
+/* 標題區 */
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #264e75;
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  margin-top: 6.4rem;
+}
+
+.titleText {
+  position: relative;
+  z-index: 2;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.decorImage {
+  width: 20px;
+  height: auto;
+  transition: all 0.3s ease;
+  vertical-align: middle;
+}
+
+/* 參與須知容器 */
+.rulesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* 須知項目 - 現在是一個大白框 */
+.ruleItem {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ruleItem.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ruleItem:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* 每個須知區塊 */
+.ruleSection {
+  margin-bottom: 2rem;
+}
+
+.ruleSection:last-child {
+  margin-bottom: 0;
+}
+
+/* 分隔線 - 暖灰色點點線 */
+.ruleDivider {
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    #a0a0a0 0,
+    #a0a0a0 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  margin: 2rem 0;
+  opacity: 0.6;
+}
+
+/* 須知標題 */
+.ruleTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* 標題icon */
+.ruleIcon {
+  font-size: 1.2rem;
+  color: #e74c3c;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 須知內容 */
+.ruleContent {
+  font-size: 1.1rem;
+  color: #34495e;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 須知列表 */
+.ruleList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ruleListItem {
+  font-size: 1.1rem;
+  color: #34495e;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ruleListItem::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #3498db;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.ruleListItem:last-child {
+  margin-bottom: 0;
+}
+
+/* 聯絡資訊區域 */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.contactItem {
+  font-size: 1.1rem;
+  color: #34495e;
+  line-height: 1.6;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.contactLabel {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-right: 0.5rem;
+}
+
+.contactLink {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  word-break: break-all;
+}
+
+.contactLink:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+.contactNote {
+  font-size: 1rem;
+  color: #7f8c8d;
+  font-style: italic;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* 響應式設計 - 大型平板電腦 */
+@media (max-width: 1024px) {
+  .section6Wrapper {
+    padding: 60px 0 50px;
   }
   
-  /* 底層背景圖層 */
-  .bottomBackgroundLayer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; 
-    opacity: 1;
+  .sectionTitle {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
   }
   
-  .bottomBackgroundLayer img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
+  .decorImage {
+    width: 12px;
+  }
+  
+  .rulesContainer {
+    max-width: 800px;
+    gap: 2rem;
+  }
+  
+  .ruleItem {
+    padding: 2rem;
+  }
+  
+  .ruleTitle {
+    font-size: 1.4rem;
+  }
+  
+  .ruleContent, .ruleListItem {
+    font-size: 1.05rem;
+  }
+}
+
+/* 響應式設計 - 平板電腦 */
+@media (max-width: 768px) {
+  .section6Wrapper {
+    padding: 50px 0 40px;
+    min-height: auto;
   }
   
   .section6Container {
-    position: relative;
-    width: 100%;
-    max-width: 90rem;
-    margin: 0 auto;
-    z-index: 3; 
-    padding: 0 28px 1.25rem 1.25rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: visible;
+    padding: 0 1.5rem;
   }
   
-  /* 標題區 */
   .sectionTitle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    margin-top: 28px;
+    font-size: 2.2rem;
     margin-bottom: 2.5rem;
-    position: relative;
-    padding: 0;
-    background: transparent;
-    overflow: visible;
   }
   
   .titleText {
-    position: relative;
-    z-index: 2;
+    padding: 0 1.5rem;
+  }
+  
+  .decorImage {
+    width: 15px;
+  }
+  
+  .rulesContainer {
+    gap: 1.8rem;
+  }
+  
+  .ruleItem {
+    padding: 1.8rem;
+  }
+  
+  .ruleTitle {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .ruleContent, .ruleListItem {
+    font-size: 1rem;
+  }
+  
+  .contactItem {
+    font-size: 1rem;
+  }
+}
+
+/* 響應式設計 - 手機 */
+@media (max-width: 600px) {
+  .section6Wrapper {
+    padding: 40px 0 30px;
+  }
+  
+  .section6Container {
     padding: 0 1rem;
   }
   
-  /* 裝飾圖片 */
-  .decorImage {
-    width: 100px;
-    height: auto;
-    transition: all 0.3s ease;
-  }
-  
-  /* 參與須知容器 */
-  .guidelinesContainer {
-    width: 100%;
-    max-width: 70rem;
-    display: flex;
-    flex-direction: column;
+  .rulesContainer {
     gap: 1.5rem;
-    margin-bottom: 2.5rem;
   }
   
-  /* 參與須知卡片 */
-  .guidelineCard {
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .ruleItem {
+    padding: 1.5rem;
   }
   
-  .guidelineCard:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  .sectionTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
   
-  /* 參與須知標題 */
-  .guidelineTitle {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #254b83;
-    margin-bottom: 1rem;
-    position: relative;
-    padding-left: 0;
-    display: flex;
-    align-items: center;
+  .titleText {
+    padding: 0 1rem;
   }
   
-  /* 標題圖標 */
-  .guidelineIcon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-    color: #f9d77e; 
-    font-size: 24px; 
+  .ruleTitle {
+    font-size: 1.2rem;
+    padding-left: 0.8rem;
   }
   
-  /* 參與須知列表 */
-  .guidelineList {
-    list-style-type: none;
-    padding-left: 1.5rem;
-    margin: 0;
+  .ruleTitle::before {
+    width: 3px;
+    height: 1.5rem;
   }
   
-  .guidelineList li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.8rem;
-    line-height: 1.5;
-    font-size: 1.1rem;
-    color: #333;
+  .ruleListItem {
+    padding-left: 1.2rem;
   }
   
-  .guidelineList li::before {
-    content: '○';
-    position: absolute;
-    left: 0;
-    color: #f9d77e;
-  }
-  
-  .guidelineList li:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* 聯絡方式列表 */
-  .contactList {
-    list-style-type: none;
-    padding-left: 1.5rem;
-    margin: 0 0 1.5rem;
-  }
-  
-  .contactList li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.8rem;
-    line-height: 1.5;
-    font-size: 1.1rem;
-    color: #333;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  
-  .contactList li::before {
-    content: '○';
-    position: absolute;
-    left: 0;
-    color: #f9d77e;
+  .contactItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
   }
   
   .contactLabel {
-    font-weight: bold;
-    margin-right: 0.5rem;
+    margin-right: 0;
   }
   
-  .contactValue {
-    color: #333;
+  /* 手機版縮小項目間距 */
+  .ruleSection {
+    margin-bottom: 1.2rem;
   }
   
-  .contactSeparator {
-    margin: 0 0.5rem;
-    color: #777;
+  .ruleSection:last-child {
+    margin-bottom: 0;
   }
   
-  .contactLink {
-    color: #254b83;
-    text-decoration: none;
-    transition: color 0.3s ease;
+  /* 分隔線間距也縮小 */
+  .ruleDivider {
+    margin: 1.2rem 0;
+  }
+}
+
+/* 響應式設計 - 小型手機 */
+@media (max-width: 480px) {
+  .section6Wrapper {
+    padding: 30px 0 25px;
   }
   
-  .contactLink:hover {
-    color: #f9d77e;
-    text-decoration: underline;
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .decorImage {
+    width: 12px;
+  }
+  
+  .ruleItem {
+    padding: 1.2rem;
+  }
+  
+  .ruleTitle {
+    font-size: 1.1rem;
+  }
+  
+  .ruleContent, .ruleListItem {
+    font-size: 0.95rem;
+  }
+  
+  .contactItem {
+    font-size: 0.95rem;
   }
   
   .contactNote {
-    padding-left: 3rem;
-    font-size: 1.1rem;
-    color: #555;
-    margin: 0;
-    font-style: italic;
+    font-size: 0.9rem;
   }
   
-  .invisible {
-    opacity: 0;
+  /* 小手機版進一步縮小間距 */
+  .ruleSection {
+    margin-bottom: 1rem;
   }
   
-  /* 響應式設計 */
-  @media (max-width: 75rem) { /* 1200px */
-    .section6Wrapper {
-      min-height: auto;
-      padding: 60px 0 2.5rem;
-    }
-    
-    .sectionTitle {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    .decorImage {
-      width: 50px;
-    }
-    
-    .guidelineIcon {
-      font-size: 22px;
-    }
+  .ruleDivider {
+    margin: 1rem 0;
+  }
+}
+
+/* 響應式設計 - 超小型設備 */
+@media (max-width: 380px) {
+  .section6Container {
+    padding: 0 0.8rem;
   }
   
-  /* 響應式設計 - 中型設備 */
-  @media (max-width: 62rem) { /* 992px */
-    .section6Wrapper {
-      padding: 2.5rem 0 3rem;
-    }
-    
-    .guidelineTitle {
-      font-size: 1.3rem;
-    }
-    
-    .guidelineList li, .contactList li, .contactNote {
-      font-size: 1rem;
-    }
-    
-    .sectionTitle {
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-    }
-    
-    .decorImage {
-      width: 45px;
-    }
-    
-    .guidelineIcon {
-      font-size: 20px;
-      margin-right: 10px;
-    }
+  .rulesContainer {
+    gap: 1.2rem;
   }
   
-  /* 響應式設計 - 平板電腦和手機 */
-  @media (max-width: 48rem) { /* 768px - 手機尺寸臨界點 */
-    .section6Wrapper {
-      padding: 2rem 0 2.5rem;
-    }
-    
-    .guidelineCard {
-      padding: 1.25rem 1.5rem;
-    }
-    
-    .guidelineTitle {
-      font-size: 1.2rem;
-      margin-bottom: 0.8rem;
-    }
-    
-    .guidelineList li, .contactList li, .contactNote {
-      font-size: 0.95rem;
-    }
-    
-    .sectionTitle {
-      font-size: 32px;
-      margin-bottom: 16px;
-    }
-    
-    .decorImage {
-      width: 60px;
-    }
-    
-    .guidelineIcon {
-      font-size: 18px;
-      margin-right: 8px;
-    }
-    
-    .contactNote {
-      padding-left: 2rem;
-    }
+  .ruleItem {
+    padding: 1rem;
   }
   
-  /* 響應式設計 - 大型手機 */
-  @media (max-width: 36rem) { /* 576px */
-    .section6Wrapper {
-      padding: 1.8rem 0 2.5rem;
-    }
-    
-    .guidelineCard {
-      padding: 1rem 1.25rem;
-    }
-    
-    .guidelineTitle {
-      font-size: 1.1rem;
-    }
-    
-    .guidelineList {
-      padding-left: 1rem;
-    }
-    
-    .guidelineList li, .contactList li {
-      padding-left: 1.25rem;
-      margin-bottom: 0.7rem;
-      font-size: 0.9rem;
-    }
-    
-    .contactNote {
-      font-size: 0.9rem;
-      padding-left: 1.5rem;
-    }
-    
-    .sectionTitle {
-      font-size: 30px;
-      margin-bottom: 1.5rem;
-    }
-    
-    .guidelineIcon {
-      font-size: 16px;
-      margin-right: 6px;
-    }
-    
-    .contactList {
-      padding-left: 1rem;
-    }
+  .ruleTitle {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
   }
   
-  /* 響應式設計 - 小型手機 */
-  @media (max-width: 30rem) { /* 480px */
-    .section6Wrapper {
-      padding: 1.5rem 0 2rem;
-    }
-    
-    .guidelineCard {
-      padding: 0.8rem 1rem;
-    }
-    
-    .guidelineTitle {
-      font-size: 1rem;
-    }
-    
-    .guidelineList li, .contactList li {
-      padding-left: 1rem;
-      font-size: 0.85rem;
-    }
-    
-    .contactNote {
-      font-size: 0.85rem;
-      padding-left: 1rem;
-    }
-    
-    .sectionTitle {
-      margin-bottom: 1.2rem;
-    }
-    
-    .guidelineIcon {
-      font-size: 14px;
-      margin-right: 5px;
-    }
+  .ruleContent, .ruleListItem {
+    font-size: 0.9rem;
   }
   
-  /* 超小型設備 */
-  @media (max-width: 23.75rem) { /* 380px */
-    .section6Wrapper {
-      padding: 1.2rem 0 1.8rem;
-    }
+  /* 超小螢幕最緊湊間距 */
+  .ruleSection {
+    margin-bottom: 0.8rem;
   }
+  
+  .ruleDivider {
+    margin: 0.8rem 0;
+  }
+}

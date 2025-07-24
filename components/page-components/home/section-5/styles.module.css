@@ -26,6 +26,17 @@
   opacity: 1;
 }
 
+/* 自定義文字選取顏色 - 應用到整個組件 */
+.section5Container ::selection {
+  background-color: rgba(102, 126, 234, 0.2);
+  color: inherit;
+}
+
+.section5Container ::-moz-selection {
+  background-color: rgba(102, 126, 234, 0.2);
+  color: inherit;
+}
+
 /* 標題區 */
 .sectionTitle {
   display: flex;
@@ -128,33 +139,11 @@
   white-space: nowrap;
 }
 
-/* 自定義文字選取顏色 */
-.prizeRank::selection {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.prizeRank::-moz-selection {
-  background-color: #e74c3c;
-  color: white;
-}
-
 .prizeName {
   font-size: 1.1rem;
   color: #34495e;
   font-weight: 500;
   line-height: 1.4;
-}
-
-/* 自定義物品名字文字選取顏色 - 保持預設藍色 */
-.prizeName::selection {
-  background-color: #88c4ff;
-  color: white;
-}
-
-.prizeName::-moz-selection {
-  background-color: #88c4ff;
-  color: white;
 }
 
 .prizeSource {
