@@ -193,6 +193,28 @@
     animation-duration: 2.5s;
   }
   
+  /* 手機版關閉 logo 浮動動畫 */
+  .floatingLogo {
+    animation: none; /* 關閉浮動動畫 */
+    transform: translateZ(0); /* 保持硬體加速 */
+  }
+  
+  /* 確保 logo 不干擾滑動 */
+  .mobileLogoContainer {
+    pointer-events: none;
+  }
+  
+  .mobileLogoWrapper {
+    pointer-events: none;
+  }
+  
+  .mobileLogoWrapper img {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+  
   /* 手機尺寸背景圖填滿整個裝置 */
   .mobileBannerBg1 img {
     width: 100%;

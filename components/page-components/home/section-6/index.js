@@ -5,11 +5,18 @@ import styles from './styles.module.css'
 
 const Section6 = () => {
   const [sectionVisible, setSectionVisible] = useState(false)
-  const [imagesLoaded, setImagesLoaded] = useState(false)
   const sectionRef = useRef(null)
   const router = useRouter()
 
   const getImagePath = (path) => `${router.basePath}${path}`
+
+  // 動態背景樣式
+  const wrapperStyle = {
+    backgroundImage: `url('${getImagePath('/image/gift/bg-5.png')}')`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+  }
 
   // 參與須知資料
   const participationRules = [
@@ -66,26 +73,6 @@ const Section6 = () => {
     },
   ]
 
-  // 預加載圖片
-  useEffect(() => {
-    const preloadImages = () => {
-      // 預加載裝飾圖片
-      const decorImg = new Image()
-      decorImg.src = getImagePath('/image/gift/bg-3.png')
-
-      decorImg.onload = () => {
-        setImagesLoaded(true)
-      }
-
-      decorImg.onerror = () => {
-        console.log('Decoration image failed to load, showing anyway')
-        setImagesLoaded(true)
-      }
-    }
-
-    preloadImages()
-  }, [])
-
   // 設置 Intersection Observer 監控元素進入視口
   useEffect(() => {
     // 檢查瀏覽器是否支援 IntersectionObserver
@@ -96,18 +83,15 @@ const Section6 = () => {
 
     const observerOptions = {
       root: null,
-      rootMargin: '50px 0px',
-      threshold: 0.1,
+      rootMargin: '0px 0px -20% 0px', // 當元素進入視口80%時觸發
+      threshold: 0.2, // 當20%的元素可見時觸發
     }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            setSectionVisible(true)
-          }, 100)
-
-          observer.unobserve(entry.target)
+          setSectionVisible(true)
+          observer.unobserve(entry.target) // 觸發後停止觀察
         }
       })
     }, observerOptions)
@@ -124,69 +108,64 @@ const Section6 = () => {
     }
   }, [])
 
-  const renderSection = imagesLoaded || true
-
   return (
-    <div className={styles.section6Wrapper} ref={sectionRef}>
-      {renderSection && (
-        <div
-          className={`${styles.section6Container} ${
-            sectionVisible ? styles.visible : ''
-          }`}
-        >
-          {/* 標題區 */}
-          <h2 className={styles.sectionTitle}>
-            <img
-              src={getImagePath('/image/gift/bg-3.png')}
-              alt="裝飾"
-              className={styles.decorImage}
-            />
-            <span className={styles.titleText}>參與須知</span>
-            <img
-              src={getImagePath('/image/gift/bg-3.png')}
-              alt="裝飾"
-              className={styles.decorImage}
-            />
-          </h2>
+    <div
+      className={styles.section6Wrapper}
+      style={wrapperStyle}
+      ref={sectionRef}
+    >
+      <div
+        className={`${styles.section6Container} ${
+          sectionVisible ? styles.visible : ''
+        }`}
+      >
+        {/* 標題區 */}
+        <h2 className={styles.sectionTitle}>
+          <img
+            src={getImagePath('/image/gift/bg-3.png')}
+            alt="裝飾"
+            className={styles.decorImage}
+          />
+          <span className={styles.titleText}>參與須知</span>
+          <img
+            src={getImagePath('/image/gift/bg-3.png')}
+            alt="裝飾"
+            className={styles.decorImage}
+          />
+        </h2>
 
-          {/* 參與須知內容區 */}
-          <div className={styles.rulesContainer}>
-            <div
-              className={`${styles.ruleItem} ${
-                sectionVisible ? styles.visible : ''
-              }`}
-              style={{ transitionDelay: `0.2s` }}
-            >
-              {participationRules.map((rule, index) => (
-                <div key={rule.id} className={styles.ruleSection}>
-                  <h3 className={styles.ruleTitle}>
-                    <span className={styles.ruleIcon}>{rule.icon}</span>
-                    {rule.title}
-                  </h3>
-                  {rule.content &&
-                    (typeof rule.content === 'string' ? (
-                      <p className={styles.ruleContent}>{rule.content}</p>
-                    ) : (
-                      <div className={styles.ruleContent}>{rule.content}</div>
+        {/* 參與須知內容區 */}
+        <div className={styles.rulesContainer}>
+          <div className={styles.ruleItem}>
+            {participationRules.map((rule, index) => (
+              <div key={rule.id} className={styles.ruleSection}>
+                <h3 className={styles.ruleTitle}>
+                  <span className={styles.ruleIcon}>{rule.icon}</span>
+                  {rule.title}
+                </h3>
+                {rule.content &&
+                  (typeof rule.content === 'string' ? (
+                    <p className={styles.ruleContent}>{rule.content}</p>
+                  ) : (
+                    <div className={styles.ruleContent}>{rule.content}</div>
+                  ))}
+                {rule.items && (
+                  <ul className={styles.ruleList}>
+                    {rule.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className={styles.ruleListItem}>
+                        {item}
+                      </li>
                     ))}
-                  {rule.items && (
-                    <ul className={styles.ruleList}>
-                      {rule.items.map((item, itemIndex) => (
-                        <li key={itemIndex} className={styles.ruleListItem}>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {index < participationRules.length - 1 && (
-                    <div className={styles.ruleDivider}></div>
-                  )}
-                </div>
-              ))}
-            </div>
+                  </ul>
+                )}
+                {index < participationRules.length - 1 && (
+                  <div className={styles.ruleDivider}></div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }

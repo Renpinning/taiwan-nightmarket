@@ -133,7 +133,7 @@ const AnimatedBanner = () => {
           />
         </div>
 
-        {/* 主要標誌 - 彈入動畫與浮動效果 */}
+        {/* 主要標誌 - 彈入動畫，無浮動效果 */}
         <div className={styles.mobileLogoContainer}>
           <div
             className={`${styles.mobileLogoWrapper} ${
@@ -145,6 +145,12 @@ const AnimatedBanner = () => {
               alt="台灣經典小吃票選活動"
               className={styles.floatingLogo}
               loading="eager"
+              style={{
+                pointerEvents: 'none',
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none',
+              }}
             />
           </div>
         </div>

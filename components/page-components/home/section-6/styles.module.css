@@ -1,8 +1,8 @@
+/* 基本容器樣式 */
 .section6Wrapper {
   position: relative;
   width: 100%;
   min-height: 600px;
-  background: url('/image/gift/bg-5.png') center/cover no-repeat;
   padding: 80px 0 60px;
   display: flex;
   align-items: center;
@@ -18,15 +18,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* 初始狀態：隱藏 */
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.8s ease-in-out;
 }
 
+/* 當 visible 類別被加上時才淡入 */
 .section6Container.visible {
   opacity: 1;
 }
 
-/* 自定義文字選取顏色 - 應用到整個組件 */
+/* 自定義文字選取顏色 */
 .section6Container ::selection {
   background-color: rgba(102, 126, 234, 0.2);
   color: inherit;
@@ -49,6 +51,14 @@
   margin-bottom: 4rem;
   position: relative;
   margin-top: 6.4rem;
+  /* 初始狀態：隱藏 */
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out 0.3s;
+}
+
+/* 標題淡入 */
+.section6Container.visible .sectionTitle {
+  opacity: 1;
 }
 
 .titleText {
@@ -75,24 +85,24 @@
   max-width: 900px;
 }
 
-/* 須知項目 - 現在是一個大白框 */
+/* 須知項目 - 純淡入效果 */
 .ruleItem {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
   padding: 2.5rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(200, 200, 200, 0.3);
-  transition: all 0.5s ease;
-  opacity: 0;
-  transform: translateY(30px);
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
+  /* 初始狀態：隱藏 */
+  opacity: 0;
+  transition: all 0.6s ease-in-out 0.6s;
 }
 
-.ruleItem.visible {
+/* 內容區淡入 */
+.section6Container.visible .ruleItem {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .ruleItem:hover {
@@ -456,5 +466,15 @@
   
   .ruleDivider {
     margin: 0.8rem 0;
+  }
+}
+
+/* 針對偏好減少動效的使用者 */
+@media (prefers-reduced-motion: reduce) {
+  .section6Container,
+  .sectionTitle,
+  .ruleItem {
+    transition: none;
+    opacity: 1;
   }
 }

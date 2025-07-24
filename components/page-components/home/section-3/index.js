@@ -53,7 +53,7 @@ const Section3 = () => {
   // 跳轉到票選活動Google表單
   const redirectToVoteGoogleForm = () => {
     window.open(
-      'https://docs.google.com/forms/d/e/1FAIpQLSdZ_Qx-EwCRwFmOkYuRhMuuB5drvemfFOxMPCEzPwhjQ9ea0Q/viewform',
+      'https://docs.google.com/forms/d/e/1FAIpQLSfQx_cD7lK5a2WacVmOLeKIBbwSllS5I7uYdDq9sNsrK_q_KQ/viewform?usp=dialog',
       '_blank'
     )
   }
@@ -66,7 +66,7 @@ const Section3 = () => {
   // 跳轉到徵文活動Google表單
   const redirectToWriteGoogleForm = () => {
     window.open(
-      'https://docs.google.com/forms/d/e/1FAIpQLSergjpvp2-78Z1iyDJwaGAF3phfq86NmvBlr9cDNwjUeanUFA/viewform',
+      'https://docs.google.com/forms/d/e/1FAIpQLSeuPt_Eu2EcvipyK-fqHFzt1Pn9goly_0C-e2Uf7Wn2couQ1Q/viewform?usp=sharing&ouid=108228840425763263474',
       '_blank'
     )
   }
