@@ -47,7 +47,7 @@ const Section3 = () => {
 
   // 跳轉到票選活動騰訊表單
   const redirectToVoteTencentForm = () => {
-    window.open('https://wj.qq.com/s2/19624850/3457/', '_blank')
+    window.open('https://wj.qq.com/s2/23278488/6t1c/', '_blank')
   }
 
   // 跳轉到票選活動Google表單
@@ -60,7 +60,7 @@ const Section3 = () => {
 
   // 跳轉到徵文活動騰訊表單
   const redirectToWriteTencentForm = () => {
-    window.open('https://wj.qq.com/s2/19612936/k065/', '_blank')
+    window.open('https://wj.qq.com/s2/23278880/lu22/', '_blank')
   }
 
   // 跳轉到徵文活動Google表單

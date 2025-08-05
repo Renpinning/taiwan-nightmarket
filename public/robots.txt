@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# 指向 sitemap
+Sitemap: https://foreign-ap.rti.org.tw/taiwan-nightmarket/sitemap.xml
+
+# 避免索引一些技術文件
+Disallow: /_next/
+Disallow: /api/
