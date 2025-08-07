@@ -218,11 +218,11 @@ const Section3 = () => {
             <div className={styles.contentBox}>
               {/* 徵文活動描述 */}
               <p className={styles.activityDescription}>
-                主題：「我與台灣夜市的故事」
+                主題：「我與臺灣夜市的故事（不限地區，夜市或是市集都可以）」
                 <br />
                 字數要求：50-100字
                 <br />
-                內容：分享您與台灣夜市之間的 難忘故事或特別經歷。
+                內容：分享您最想逛台灣夜市的原因或是您與夜市之間的難忘故事或特別經歷。
                 <br />
                 <br />
                 投稿方式： <br />

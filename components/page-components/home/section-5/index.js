@@ -155,7 +155,6 @@ const Section5 = () => {
               </div>
             ))}
           </div>
-          <p className={styles.prizeSource}>圖片取自於故宮精品商城</p>
         </div>
       )}
     </div>
