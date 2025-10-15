@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import styles from './styles.module.css'
 import 'animate.css'
-import { FaTrophy, FaMedal, FaAward, FaGift } from 'react-icons/fa'
+import { FaTrophy, FaGift } from 'react-icons/fa'
 
 const Section7 = () => {
   const [sectionVisible, setSectionVisible] = useState(false)
@@ -52,32 +52,25 @@ const Section7 = () => {
   // 更新的獎項資料
   const awardData = [
     {
-      category: '徵文第一名',
-      prize: '太陽眼鏡',
+      category: '徵文比賽得獎者',
       icon: <FaTrophy />,
-      iconColor: '#FFD700', // 金色
-      winners: ['待公布'],
+      iconColor: '#FFD700',
+      winners: ['第一名：晴OCCR', '第二名：陳O龍', '第三名：O先生'],
     },
     {
-      category: '徵文第二名和第三名',
-      prize: '造型墨鏡',
-      icon: <FaMedal />,
-      iconColor: '#C0C0C0', // 銀色
-      winners: ['待公布'],
-    },
-    {
-      category: '徵文佳作獎',
-      prize: '胖胖包（共5名）',
-      icon: <FaAward />,
-      iconColor: '#CD7F32', // 銅色
-      winners: ['待公布'],
-    },
-    {
-      category: '票選幸運獎',
-      prize: '鴨舌帽（共8名）',
+      category: '票選幸運獎得主',
       icon: <FaGift />,
-      iconColor: '#5B84B1', // 藍色
-      winners: ['待公布'],
+      iconColor: '#5B84B1',
+      winners: [
+        '尹O畺',
+        '黎O正',
+        '于O雁',
+        '劉O暉',
+        '朱O澤',
+        '小O',
+        '馮O翔',
+        'O霞',
+      ],
     },
   ]
 
@@ -108,10 +101,7 @@ const Section7 = () => {
           {awardData.map((award, index) => (
             <div
               key={index}
-              className={`${styles.awardCard} ${
-                sectionVisible ? styles.visible : ''
-              }`}
-              style={{ transitionDelay: `${0.2 + index * 0.1}s` }}
+              className={`${styles.awardCard} ${styles.visible}`}
             >
               <h3 className={styles.awardTitle}>
                 <span
@@ -123,15 +113,11 @@ const Section7 = () => {
                 {award.category}
               </h3>
               <div className={styles.awardContent}>
-                <p className={styles.prizeInfo}>{award.prize}</p>
                 <div className={styles.winnersList}>
                   {award.winners.map((winner, winnerIndex) => (
-                    <span key={winnerIndex} className={styles.winnerName}>
+                    <div key={winnerIndex} className={styles.winnerName}>
                       {winner}
-                      {winnerIndex < award.winners.length - 1 && (
-                        <span className={styles.winnerSeparator}> • </span>
-                      )}
-                    </span>
+                    </div>
                   ))}
                 </div>
               </div>
